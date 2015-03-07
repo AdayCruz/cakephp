@@ -7,7 +7,7 @@
  */
 
 class CakeBasesController extends AppController {
-    public $helpers = array('Html', 'Form');
+    public $helpers = ['Html', 'Form'];
     
     public function index() {
         $this->set('bases', $this->CakeBase->find('all'));

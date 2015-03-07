@@ -6,10 +6,10 @@
  * and open the template in the editor.
  */
 
-class PostsController extends AppController {
+class UsersController extends AppController {
     public $helpers = ['Html', 'Form'];
     
-    public function index() {
-        $this->set('posts', $this->Post->find('all'));
+    public function index(){
+        $this->set('users',$this->User->find('all'));
     }
 }
