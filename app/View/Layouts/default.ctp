@@ -45,19 +45,31 @@ $title = __d('cake_dev', 'CakeRecipe');
         <div data-role="header" data-position="fixed">
             <h1><?php echo $this->fetch('title') ?></h1>
             <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
-                <a href="#" data-role="button" data-icon="user" data-iconpos="notext">Login</a>
-                <!--button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-adduser ui-btn-icon-notext">myicon</button-->
+                <!--a href="#" data-role="button" data-icon="user" data-iconpos="notext">Login</a-->
+                <?php echo $this->Html->link('Login',
+    ['controller' => 'users', 'action' => 'login'],
+    ['data-role' => 'button', 'data-icon' => 'user', 'data-iconpos' => 'notext']); ?>
                 <?php if ($this->fetch('title') == 'Página principal'): ?>
-                    <a href="#" data-role="button" data-icon="adduser" data-iconpos="notext">Registrarse</a>
-                    <!--button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-adduser ui-btn-icon-notext">myicon</button-->
+                    <!--a href="#" data-role="button" data-icon="adduser" data-iconpos="notext">Registrarse</a-->
+                    <?php echo $this->Html->link('Registrarse',
+    ['controller' => 'users', 'action' => 'signup'],
+    ['data-role' => 'button', 'data-icon' => 'adduser', 'data-iconpos' => 'notext']); ?>
                 <?php else: ?>
-                    <a href="#" data-role="button" data-icon="home" data-iconpos="notext">Principal</a>
+                    <!--a href="#" data-role="button" data-icon="home" data-iconpos="notext">Principal</a-->
+                    <?php echo $this->Html->link('Principal',
+    Router::fullbaseUrl().$this->webroot,
+    ['data-role' => 'button', 'data-icon' => 'home', 'data-iconpos' => 'notext']); ?>
                 <?php endif; ?>
             </div>
             <div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
-                <a href="#" data-role="button" data-icon="info" data-iconpos="notext">Info</a>
+                <!--a href="#" data-role="button" data-icon="info" data-iconpos="notext">Info</a-->
+                <?php if ($this->fetch('title') != 'Información'):
+                echo $this->Html->link('Login',
+    ['controller' => 'pages', 'action' => 'info'],
+    ['data-role' => 'button', 'data-icon' => 'info', 'data-iconpos' => 'notext']); 
+                endif;?>
                 <?php if ($this->fetch('title') != 'Página principal'): ?>
-                    <a href="#" data-role="button" data-icon="back" data-iconpos="notext">Atrás</a>
+                    <a data-rel='back' data-role="button" data-icon="back" data-iconpos="notext">Atrás</a>
                 <?php endif; ?>
             </div>
                 <!--a data-rel="back" class="ui-btn ui-btn-left ui-corner-all ui-btn-icon-left ui-icon-info ui-btn-icon-notext">Información</a-->

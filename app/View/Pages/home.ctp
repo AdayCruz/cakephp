@@ -12,11 +12,15 @@ $this->assign('title','Página principal');
 App::uses('Debugger', 'Utility');
 
 //include_once('home-default.ctp');
+                    /*echo $this->Html->link(
+                            $this->Html->image("img/1.png", ["class" => "ui-li-thumb"]),
+                            ['controller' => 'cakebases', 'action' => 'index']);*/
 ?>
 <div id="demo-page" class="my-page">
     <div role="main" class="ui-content">
         <ul data-role="listview" data-inset="true">
-            <li><a href="#">
+            <li>
+                <a href="cakebases">
                 <img src="img/1.png" class="ui-li-thumb">
                 <h2>Crea tus propias tartas</h2>
                 <p>Utilizando nuestro creador de recetas</p>
