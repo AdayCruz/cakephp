@@ -13,4 +13,7 @@ class CoatingsController extends AppController {
         $this->set('coatings', $this->Coating->find('all'));
     }
     
+    public function select(){
+        $this->set('coatings', $this->Coating->find('all'));
+    }
 }

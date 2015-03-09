@@ -21,10 +21,10 @@ App::uses('Debugger', 'Utility');
         <ul data-role="listview" data-inset="true">
             <?php foreach ($bases as $base): ?>
                 <li>
-                    <a href="#<?php echo $base['CakeBase']['baseid']; ?>">
+                    <a href="#<?php echo $base['CakeBase']['id']; ?>">
                         <img src="<?php echo $base['CakeBase']['image']; ?>" class="ui-li-thumb">
                         <h2><?php echo $base['CakeBase']['name']; ?></h2>
-                        <p><?php echo $base['CakeBase']['recipe']; ?></p>
+                        <p><?php echo $base['CakeBase']['description']; ?></p>
                         <p class="ui-li-aside"><?php echo $base['CakeBase']['price']." €"; ?></p>
                     </a>
                 </li>

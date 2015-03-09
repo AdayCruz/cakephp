@@ -12,4 +12,8 @@ class FillingsController extends AppController {
     public function index(){
            $this->set('fillings', $this->Filling->find('all'));
     }
+    
+    public function select(){
+           $this->set('fillings', $this->Filling->find('all'));
+    }
 }

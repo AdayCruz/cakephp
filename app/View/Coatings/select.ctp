@@ -8,7 +8,7 @@
 if (!Configure::read('debug')):
 	throw new NotFoundException();
 endif;
-$this->assign('title','Seleccionar base');
+$this->assign('title','Seleccionar cobertura');
 App::uses('Debugger', 'Utility');
 
 //include_once('home-default.ctp');
@@ -31,17 +31,17 @@ if (isset($this->request->pass[2])){
 <div id="demo-page" class="my-page">
     <div role="main" class="ui-content">
         <ul data-role="listview" data-inset="true">
-            <?php foreach ($bases as $base): ?>
+            <?php foreach ($coatings as $coating): ?>
                 <li>
-                    <a href="/cakephp/fillings/select/<?php echo $base['CakeBase']['id']."/".$filling."/".$coating; ?>" onclick="storeData ('baseid', '<?php echo $base['CakeBase']['id']; ?>')">
-                        <img src="<?php echo $base['CakeBase']['image']; ?>" class="ui-li-thumb">
-                        <h2><?php echo $base['CakeBase']['name']; ?></h2>
-                        <p><?php echo $base['CakeBase']['description']; ?></p>
-                        <p class="ui-li-aside"><?php echo $base['CakeBase']['price']." €"; ?></p>
+                    <a href="/cakephp/orders/process/<?php echo $base."/".$filling."/".$coating['Coating']['id']; ?>" onclick="storeData ('coatingid', '<?php echo $coating['Coating']['id']; ?>')">
+                        <img src="<?php echo $coating['Coating']['image']; ?>" class="ui-li-thumb">
+                        <h2><?php echo $coating['Coating']['name']; ?></h2>
+                        <p><?php echo $coating['Coating']['description']; ?></p>
+                        <p class="ui-li-aside"><?php echo $coating['Coating']['price']." €"; ?></p>
                     </a>
                 </li>
             <?php endforeach; ?>
-            <?php unset($base) ?>
+            <?php unset($coating) ?>
         </ul>
     </div><!-- /content -->
 </div>
