@@ -7,8 +7,8 @@
 }
 @media ( max-width: 47.9em ) {
      .my-page .ui-content {
-        //padding: 6.25em; /* 100px */
-        margin-top:30%;
+        padding: .625em; /* 100px */
+        //margin-top:10%;
     }
     .my-page .ui-listview li .ui-btn .ui-li-aside {
         margin-top: -0.5em;
@@ -19,7 +19,8 @@
 /* First breakpoint is 48em (768px). 3 column layout. Tiles 250x250 pixels incl. margin at the breakpoint. */
 @media ( min-width: 48em ) {
     .my-page .ui-content {
-        padding: 6.25em; /* 100px */
+        padding: .625em; /* 100px */
+        //margin-top:10%;
     }
     .my-page .ui-listview li {
         float:left;
@@ -128,7 +129,8 @@
 /* Second breakpoint is 63.75em (1020px). 4 column layout. Tiles will be 250x250 pixels incl. margin again at the breakpoint. */
 @media ( min-width: 63.75em ) {
     .my-page .ui-content {
-        padding: 6.25em; /* 100px */
+        padding: .625em; /* 100px */
+        //margin-top:10%;
     }
     /* Set a max-width for the last breakpoint to prevent too much stretching on large screens.
     By setting the max-width equal to the breakpoint width minus padding we keep square tiles. */
@@ -140,7 +142,7 @@
     but we stick to percentage values for demo purposes. */
     .my-page .ui-listview li {
         width: 30.9333%;
-        height: 450px;
+        height: 310px;
         margin: .625em 1%;
     }
 }

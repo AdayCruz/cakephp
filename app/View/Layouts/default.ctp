@@ -33,7 +33,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                         (['Daw2.min',
                             'jquery.mobile.icons.min',
                             'jquery.mobile.structure-1.4.5.min','listview-grid']);
-                echo $this->Html->script(['jquery-1.11.1.min','jquery.mobile-1.4.5.min']);
+                echo $this->Html->script(['jquery-1.11.1.min','jquery.mobile-1.4.5','cakerecipe']);
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -46,15 +46,18 @@ $title = __d('cake_dev', 'CakeRecipe');
             <h1><?php echo $this->fetch('title') ?></h1>
             <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
                 <!--a href="#" data-role="button" data-icon="user" data-iconpos="notext">Login</a-->
-                <?php echo $this->Html->link('Login',
-    ['controller' => 'users', 'action' => 'login'],
-    ['data-role' => 'button', 'data-icon' => 'user', 'data-iconpos' => 'notext']); ?>
-                <?php if ($this->fetch('title') == 'Página principal'): ?>
+                <?php if ($this->fetch('title') != 'Iniciar sesión'): ?>
+                        <?php echo $this->Html->link('Login',
+        ['controller' => 'users', 'action' => 'login'],
+        ['data-role' => 'button', 'data-icon' => 'user', 'data-iconpos' => 'notext']); ?>
+                <?php endif; ?>
+                <?php if ($this->fetch('title') == 'Página principal' || $this->fetch('title') == 'Iniciar sesión'): ?>
                     <!--a href="#" data-role="button" data-icon="adduser" data-iconpos="notext">Registrarse</a-->
                     <?php echo $this->Html->link('Registrarse',
     ['controller' => 'users', 'action' => 'signup'],
     ['data-role' => 'button', 'data-icon' => 'adduser', 'data-iconpos' => 'notext']); ?>
-                <?php else: ?>
+                <?php endif; ?>
+                <?php if ($this->fetch('title') != 'Página principal'): ?>
                     <!--a href="#" data-role="button" data-icon="home" data-iconpos="notext">Principal</a-->
                     <?php echo $this->Html->link('Principal',
     Router::fullbaseUrl().$this->webroot,
@@ -79,7 +82,7 @@ $title = __d('cake_dev', 'CakeRecipe');
 
             <?php echo $this->fetch('content'); ?>
         </div>
-        <div data-role="footer" data-position="fixed" data-theme="a">
+        <!--div data-role="footer" data-position="fixed" data-theme="a">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#" class="ui-btn-icon-top ui-icon-info">Reciente</a></li>
@@ -87,7 +90,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                     <li><a href="#" class="ui-btn-icon-top ui-icon-star">Favoritos</a></li>
                 </ul>
             </div>
-        </div>
+        </div-->
     </div>
 </body>
 </html>

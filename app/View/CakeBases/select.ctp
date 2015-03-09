@@ -8,7 +8,7 @@
 if (!Configure::read('debug')):
 	throw new NotFoundException();
 endif;
-$this->assign('title','Bases');
+$this->assign('title','Seleccionar base');
 App::uses('Debugger', 'Utility');
 
 //include_once('home-default.ctp');
@@ -21,7 +21,7 @@ App::uses('Debugger', 'Utility');
         <ul data-role="listview" data-inset="true">
             <?php foreach ($bases as $base): ?>
                 <li>
-                    <a href="#<?php echo $base['CakeBase']['baseid']; ?>">
+                    <a href="/cakephp/fillings" onclick="storeData ('baseid', '<?php echo $base['CakeBase']['baseid']; ?>')">
                         <img src="<?php echo $base['CakeBase']['image']; ?>" class="ui-li-thumb">
                         <h2><?php echo $base['CakeBase']['name']; ?></h2>
                         <p><?php echo $base['CakeBase']['recipe']; ?></p>
@@ -32,4 +32,10 @@ App::uses('Debugger', 'Utility');
             <?php unset($base) ?>
         </ul>
     </div><!-- /content -->
+</div>
+<div class="ui-grid-c ui-responsive">
+    <div class="ui-block-a"><a href="#" class="ui-btn ui-shadow ui-corner-all">Base</a></div>
+    <div class="ui-block-b"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Relleno</a></div>
+    <div class="ui-block-c"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Cobertura</a></div>
+    <div class="ui-block-d"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Procesar</a></div>
 </div>

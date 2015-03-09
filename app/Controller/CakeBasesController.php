@@ -12,4 +12,8 @@ class CakeBasesController extends AppController {
     public function index() {
         $this->set('bases', $this->CakeBase->find('all'));
     }
+    
+    public function select() {
+        $this->set('bases', $this->CakeBase->find('all'));
+    }
 }

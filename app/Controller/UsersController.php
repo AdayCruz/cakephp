@@ -10,6 +10,13 @@ class UsersController extends AppController {
     public $helpers = ['Html', 'Form'];
     
     public function index(){
+        //comprobar perfil
         $this->set('users',$this->User->find('all'));
+    }
+    
+    public function login() {
+    }
+    
+    public function signup() {
     }
 }
