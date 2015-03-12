@@ -10,5 +10,5 @@
         ));
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('Añadir')); ?>
+<?php echo $this->Form->end(__('Añadir'));?>
 </div>
