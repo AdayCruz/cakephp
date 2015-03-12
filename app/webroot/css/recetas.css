@@ -1,0 +1,82 @@
+.forkd.recipe IMG.hero {
+    float: right;
+    max-height: 250px;
+    margin: 0px;
+    border: 1px solid #000;
+    }
+.forkd.recipe DIV.tit{
+    margin: 1em 0;
+    font-weight: bold;
+    font-size: 130%;
+    }
+.forkd.recipe DIV.description {
+    margin: 1em 0;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 120%;
+    }
+.forkd.recipe DIV.subheading {
+    margin: 1em 0;
+    font-weight: bold;
+    font-size: 120%;
+    }
+.forkd.recipe UL.ingredients {
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    }
+.forkd.recipe UL.ingredients LI {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #ffb0b3;
+    }
+.forkd.recipe UL.ingredients LI:before {
+    content: "";
+    }
+.forkd.recipe UL.ingredients LI STRONG.heading {
+    display: block;
+    margin-top: 5px;
+    font-size: 110%;
+    }
+.forkd.recipe DL {
+    padding: 5px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 75%;
+    background: #fdffc9;
+    }
+.forkd.recipe DL DT {
+    display: inline;
+    font-weight: bold;
+    }
+.forkd.recipe DL DD {
+    display: inline;
+    margin: 0 7px 0 0;
+    }
+.forkd.recipe .source {
+    background: #EFEFEF;
+    }
+.forkd.recipe .source IMG {
+    border: 0;
+    vertical-align: middle;
+    }
+.forkd.recipe .source SPAN {
+    margin: 0 0 0 3px;
+    padding: 0 0 0 6px;
+    border-left: 1px solid #CCC;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 75%;
+    color: #546D1C;
+    }
+.forkd.recipe .source .stars {
+    padding-bottom: 4px;
+    }
+.forkd.recipe .source .descendants {
+    display: none;
+    }
+@media ( max-width: 40em ) {
+     .forkd.recipe IMG.hero {
+         float: none;
+         max-height: 150px
+     } 
+}

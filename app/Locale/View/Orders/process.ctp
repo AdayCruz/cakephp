@@ -4,7 +4,7 @@
  * @package       app.View.Pages
  * @since         CakePHP(tm) v 0.10.0.1076
  */
-echo $this->Html->css('recetas');
+
 if (!Configure::read('debug')):
 	throw new NotFoundException();
 endif;
@@ -22,9 +22,7 @@ App::uses('Debugger', 'Utility');
     <div class="ui-block-c"><a href="#" class="ui-btn ui-shadow ui-corner-all">Cobertura</a></div>
 </div>
 <?php
-    echo "<h3><center>Receta de ".$base['CakeBase']['name']." con ";
-    echo $filling['Filling']['name']." y ";
-    echo $coating['Coating']['name']."</h3></center>";
-    echo $base['CakeBase']['recipe'];
-    echo $filling['Filling']['recipe'];
+    echo $base['CakeBase']['name']."+";
+    echo $filling['Filling']['name']."+";
+    echo $coating['Coating']['name'];
 ?>
