@@ -70,7 +70,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                 <?php if ($this->fetch('title') != 'Página principal'): ?>
                     <!--a href="#" data-role="button" data-icon="home" data-iconpos="notext">Principal</a-->
                     <?php
-                    echo $this->Html->link('Principal', Router::fullbaseUrl() . $this->webroot, ['data-role' => 'button', 'data-icon' => 'home', 'data-iconpos' => 'notext']);
+                    echo $this->Html->link('Principal', Router::fullbaseUrl() . $this->webroot, ['data-ajax' => 'false' , 'data-role' => 'button', 'data-icon' => 'home', 'data-iconpos' => 'notext']);
                     ?>
                 <?php endif; ?>
             </div>
