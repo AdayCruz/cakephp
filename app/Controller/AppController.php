@@ -36,24 +36,25 @@ class AppController extends Controller {
         //'DebugKit.Toolbar',
         'Session',
         'Auth' => array(
-            'loginRedirect' => array(
-                'controller' => 'posts', //<-corregir
-                'action' => 'index' //<-corregir
-            ),
-            'logoutRedirect' => array(
-                'controller' => 'pages',//<-corregir
-                'action' => 'display',//<-corregir
-                'home'
-            ),
+            'loginRedirect' => array('controller' => 'users', 'action' => 'profile'),
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+            'authError' => 'Esta página no está disponible',
+            'loginError' => 'Usuario y/o contraseña incorrectos',
             'authenticate' => array(
                 'Form' => array(
                     'passwordHasher' => 'Blowfish'
                 )
-            )
+            ),
+            //'authorize' => array('Controller') // Added this line
         )
+        
     );
 
     public function beforeFilter() {
         $this->Auth->allow('display', 'select', 'index', 'process');
+    }
+    
+    public function isAuthorized($user) {
+        return true;
     }
 }

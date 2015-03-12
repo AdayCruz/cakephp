@@ -46,22 +46,32 @@ $title = __d('cake_dev', 'CakeRecipe');
             <h1><?php echo $this->fetch('title') ?></h1>
             <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
                 <!--a href="#" data-role="button" data-icon="user" data-iconpos="notext">Login</a-->
-                <?php if ($this->fetch('title') != 'Iniciar sesión'): ?>
-                        <?php echo $this->Html->link('Login',
-        ['controller' => 'users', 'action' => 'login'],
-        ['data-role' => 'button', 'data-icon' => 'user', 'data-iconpos' => 'notext']); ?>
+                <?php if (($this->fetch('title') != 'Iniciar sesión') && ($this->Session->read('Auth.User.id') == null)): ?>
+                    <?php
+                    echo $this->Html->link('Login', ['controller' => 'users', 'action' => 'login'], ['data-role' => 'button', 'data-icon' => 'user', 'data-iconpos' => 'notext']);
+                    ?>
                 <?php endif; ?>
-                <?php if ($this->fetch('title') == 'Página principal' || $this->fetch('title') == 'Iniciar sesión'): ?>
+                <?php if (($this->Session->read('Auth.User.id') != null) && ($this->fetch('title') == 'Página principal')): ?>
+                    <?php
+                    echo $this->Html->link('Login', ['controller' => 'users', 'action' => 'profile'], ['data-role' => 'button', 'data-icon' => 'user', 'data-iconpos' => 'notext']);
+                    ?>
+                <?php endif; ?>
+                <?php if ($this->Session->read('Auth.User.id') != null): ?>
+                    <?php
+                    echo $this->Html->link('Login', ['controller' => 'users', 'action' => 'logout'], ['data-role' => 'button', 'data-icon' => 'action', 'data-iconpos' => 'notext']);
+                    ?>
+                <?php endif; ?>
+                <?php if (($this->fetch('title') == 'Página principal' && $this->Session->read('Auth.User.id') == null) || $this->fetch('title') == 'Iniciar sesión'): ?>
                     <!--a href="#" data-role="button" data-icon="adduser" data-iconpos="notext">Registrarse</a-->
-                    <?php echo $this->Html->link('Registrarse',
-    ['controller' => 'users', 'action' => 'signup'],
-    ['data-role' => 'button', 'data-icon' => 'adduser', 'data-iconpos' => 'notext']); ?>
+                    <?php
+                    echo $this->Html->link('Registrarse', ['controller' => 'users', 'action' => 'signup'], ['data-role' => 'button', 'data-icon' => 'adduser', 'data-iconpos' => 'notext']);
+                    ?>
                 <?php endif; ?>
                 <?php if ($this->fetch('title') != 'Página principal'): ?>
                     <!--a href="#" data-role="button" data-icon="home" data-iconpos="notext">Principal</a-->
-                    <?php echo $this->Html->link('Principal',
-    Router::fullbaseUrl().$this->webroot,
-    ['data-role' => 'button', 'data-icon' => 'home', 'data-iconpos' => 'notext']); ?>
+                    <?php
+                    echo $this->Html->link('Principal', Router::fullbaseUrl() . $this->webroot, ['data-role' => 'button', 'data-icon' => 'home', 'data-iconpos' => 'notext']);
+                    ?>
                 <?php endif; ?>
             </div>
             <div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
@@ -79,7 +89,6 @@ $title = __d('cake_dev', 'CakeRecipe');
         </div>
         <div class="ui-content" role="main">
             <?php echo $this->Session->flash(); ?>
-
             <?php echo $this->fetch('content'); ?>
         </div>
         <!--div data-role="footer" data-position="fixed" data-theme="a">

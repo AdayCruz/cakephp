@@ -11,13 +11,19 @@ class UsersController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('signup', 'logout');
+        $this->Auth->allow('signup', 'logout', 'login');
     }
     
     public function index(){
         //comprobar perfil
-        $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
+        //$this->User->recursive = 0;
+        //$this->set('users', $this->paginate());
+        $this->paginate = array(
+            'limit' => 6,
+            'order' => array('User.username' => 'asc' )
+        );
+        $users = $this->paginate('User');
+        $this->set(compact('users'));
     }
     
     public function view($id = null){
@@ -29,14 +35,14 @@ class UsersController extends AppController {
     }
     
     public function add(){
-        if ($this->request->is('post')){
-            $this->User->create();
-            if ($this->User->save($this->request->data)){
-                $this->Session->setFlash(__('Usuario creado'));
-                return $this->redirect(array('action'=>'index'));//<- probablemente mal
+            if ($this->request->is('post')){
+                $this->User->create();
+                if ($this->User->save($this->request->data)){
+                    $this->Session->setFlash(__('Usuario creado'));
+                    return $this->redirect(array('action'=>'index'));//<- probablemente mal
+                }
+                $this->Session->setFlash(__('No se ha podido crear el usuario'));
             }
-            $this->Session->setFlash(__('No se ha podido crear el usuario'));
-        }
     }
     
     public function edit($id = null){
@@ -47,7 +53,7 @@ class UsersController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')){
             if ($this->User->save($this->request->data)){
                 $this->Session->setFlash(__('Usuario actualizado'));
-                return $this->redirect(array('action'=>'index'));//<- probablemente mal
+                return $this->redirect(array('action'=>'index'));
             }
             $this->Session->setFlash(__('No se ha podido crear el usuario'));
         }else {
@@ -65,16 +71,20 @@ class UsersController extends AppController {
         }
         if ($this->User->delete()){
             $this->Session->setFlash(__('Usuario eliminado'));
-            return $this->redirect(array('action'=>'index'));//<- probablemente mal
+            return $this->redirect(array('action'=>'index'));
         }
         $this->Session->setFlash(__('Usuario no eliminado'));
-        return $this->redirect(array('action'=>'index'));//<- probablemente mal
+        return $this->redirect(array('action'=>'index'));
     }
     
     public function login() {
+        if($this->Session->check('Auth.User')){
+            $this->redirect(array('action' => 'profile'));     
+        }
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                return $this->redirect(Router::fullbaseUrl().$this->webroot);
+                $this->Session->setFlash(__('Bienvenido, '. $this->Auth->user('username')));
+                return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Session->setFlash(__('Usuario y/o contraseña incorrectos'));
         }
@@ -89,9 +99,13 @@ class UsersController extends AppController {
             $this->User->create();
             if ($this->User->save($this->request->data)){
                 $this->Session->setFlash(__('Usuario creado'));
-                return $this->redirect(Router::fullbaseUrl().$this->webroot);//<- probablemente mal
+                return $this->redirect(['action' => 'login']);
             }
             $this->Session->setFlash(__('No se ha podido crear el usuario'));
         }
+    }
+    
+    public function profile(){
+        
     }
 }

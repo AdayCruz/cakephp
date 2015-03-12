@@ -45,7 +45,7 @@ if (isset($this->request->pass[2])){
         </ul>
     </div><!-- /content -->
 </div>
-<div class="ui-grid-c ui-responsive">
+<div class="ui-grid-c">
     <div class="ui-block-a"><a href="#" class="ui-btn ui-shadow ui-corner-all">Base</a></div>
     <div class="ui-block-b"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Relleno</a></div>
     <div class="ui-block-c"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Cobertura</a></div>
