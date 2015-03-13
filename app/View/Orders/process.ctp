@@ -45,4 +45,5 @@ if ($filling['Filling']['compatible']!=null && $base['CakeBase']['id']!=$filling
     echo $coating['Coating']['name']."</h3></center>";
     echo $base['CakeBase']['recipe'];
     echo $filling['Filling']['recipe'];
+    echo $coating['Coating']['recipe'];
 ?>

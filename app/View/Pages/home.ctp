@@ -20,19 +20,19 @@ App::uses('Debugger', 'Utility');
     <div role="main" class="ui-content">
         <ul data-role="listview" data-inset="true">
             <li>
-                <a id="selectcake" href="cakebases/select/0/0/0">
+                <a id="selectcake" href="cakebases/select/0/0/0" data-ajax="false">
                 <img src="/cakephp/img/recipe.jpg" class="ui-li-thumb">
                 <h2>Crea tus propias tartas</h2>
                 <p>Utilizando nuestro creador de recetas</p>
                 <p class="ui-li-aside">CREA</p>
             </a></li>
-            <li><a href="images/upload">
+            <li><a href="posts/upload" data-ajax="false">
                 <img src="/cakephp/img/tchoco.jpg" class="ui-li-thumb">
                 <h2>Sube tus creaciones</h2>
                 <p>Comparte con nosotros tus mejores tartas</p>
                 <p class="ui-li-aside">COMPARTE</p>
             </a></li>
-            <li><a href="images/browse">
+            <li><a href="posts/browse" data-ajax="false">
                 <img src="/cakephp/img/comenta.jpg" class="ui-li-thumb">
                 <h2>Vuestras creaciones</h2>
                 <p>Comenta las creaciones de los demás</p>

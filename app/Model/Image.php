@@ -7,4 +7,12 @@
  */
 
 class Image extends AppModel {
+     public $validate = ['title' => array(
+    'rule' => 'notEmpty'
+        ),
+        'imageurl' => array(
+    'rule' => 'notEmpty'
+        ),
+    ];
+
 }

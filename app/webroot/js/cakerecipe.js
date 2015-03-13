@@ -12,6 +12,10 @@ function storeData (name, id){
     }
 }
 
+$(document).bind("mobileinit", function(){
+    $.mobile.ajaxLinksEnabled(false);
+});
+
 $( document ).ready(function() {
     if (typeof(Storage) !== "undefined") {
         var page = "cakebases/select";
