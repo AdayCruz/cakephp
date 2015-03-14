@@ -30,7 +30,6 @@ class ImagesController extends AppController {
         if ($this->request->is('post')) {
             //Check if image has been uploaded
             if ($this->data['Image']['imageurl']) {
-
                 $file = new File($this->request->data['Image']['imageurl']['tmp_name'], true, 0644);
                 $path_parts = pathinfo($this->data['Image']['imageurl']['name']);
                 $ext = $path_parts['extension'];
@@ -49,6 +48,7 @@ class ImagesController extends AppController {
                     $file->close();
                 }
             }
+            //$this->data['Image']['imageurl'] = resize($this->data['Image']['imageurl'], 500, 500, true, null, 70, 2);
             //Fin subir imagenes
 
             $this->request->data['Image']['imageurl'] = $this->request->data['Image']['imageurl']['name'];

@@ -1,3 +1,6 @@
+<?php
+$this->assign('title','Explorar imágenes');
+?>
 <div id="demo-page" class="my-page">
     <div role="main" class="ui-content">
         <ul data-role="listview" data-inset="true">
