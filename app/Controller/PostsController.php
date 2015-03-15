@@ -59,6 +59,7 @@ class PostsController extends AppController {
                 $ext = $path_parts['extension'];
                 $manipulator = new ImageManipulator($this->request->data['Post']['imageurl']['tmp_name']);
                 $newImage = $manipulator->resample(500, 500);
+                $manipulator->save('img/uploads/' . $filename ."full.". $ext);
                 $width  = $manipulator->getWidth();
                 $height = $manipulator->getHeight();
                 $centreX = round($width / 2);
