@@ -17,7 +17,7 @@ class OrdersController extends AppController {
     }
     
     public function process($base, $filling, $coating){
-        $CakeBase = new CakeBasesController;
+        $CakeBase = new CakeBasesController();
         $Filling = new FillingsController();
         $Coating = new CoatingsController();
         

@@ -91,15 +91,23 @@ $title = __d('cake_dev', 'CakeRecipe');
             <?php echo $this->Session->flash(); ?>
             <?php echo $this->fetch('content'); ?>
         </div>
-        <!--div data-role="footer" data-position="fixed" data-theme="a">
+        <?php if(($this->fetch('title') == 'Perfil de usuario')
+                ||($this->fetch('title') == 'Editar perfil')
+                ||($this->fetch('title') == 'Mis imágenes')
+                ||($this->fetch('title') == 'Mis pedidos')) :?>
+        <div data-role="footer" data-position="fixed" data-theme="a">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#" class="ui-btn-icon-top ui-icon-info">Reciente</a></li>
-                    <li><a href="#" class="ui-btn-active ui-btn-icon-top ui-icon-bars">Listado</a></li>
-                    <li><a href="#" class="ui-btn-icon-top ui-icon-star">Favoritos</a></li>
+                    <li><a href="/cakephp/users/profile" class="ui-btn-icon-top ui-icon-eye<?php 
+                    if($this->fetch('title') == 'Perfil de usuario')echo " ui-btn-active"; ?>">Perfil</a></li>
+                    <li><a href="/cakephp/users/orders" class="ui-btn-icon-top ui-icon-shop<?php 
+                    if($this->fetch('title') == 'Mis pedidos')echo " ui-btn-active"; ?>">Pedidos</a></li>
+                    <li><a href="/cakephp/users/posts" class="ui-btn-icon-top ui-icon-camera<?php 
+                    if($this->fetch('title') == 'Mis imágenes')echo " ui-btn-active"; ?>">Imágenes</a></li>
                 </ul>
             </div>
-        </div-->
+        </div>
+        <?php endif; ?>
     </div>
 </body>
 </html>
