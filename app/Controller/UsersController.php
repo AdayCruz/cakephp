@@ -112,7 +112,9 @@ class UsersController extends AppController {
     }
     
     public function orders(){
-        
+        $Orders = new OrdersController();
+        $conditions = ['Order.userid' => $this->Auth->user('id')];
+        $this->set('orders', $Orders->Order->find('all', ['conditions' => $conditions]));
     }
     
     public function posts(){

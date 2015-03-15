@@ -12,6 +12,14 @@ function storeData (name, id){
     }
 }
 
+function deleteData (){
+    if (typeof(Storage) !== "undefined") {
+        localStorage.clear();
+    } else {
+        alert ("Sorry, your browser does not support Web Storage...");
+    }
+}
+
 $(document).bind("mobileinit", function(){
     $.mobile.ajaxLinksEnabled(false);
 });

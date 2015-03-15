@@ -17,6 +17,26 @@ class OrdersController extends AppController {
     }
     
     public function process($base, $filling, $coating){
+        $this->set('user', $this->Auth->user());
+        $CakeBase = new CakeBasesController();
+        $Filling = new FillingsController();
+        $Coating = new CoatingsController();
+        
+        $this->set('base', $CakeBase->CakeBase->findById($base));
+        $this->set('filling', $Filling->Filling->findById($filling));
+        $this->set('coating', $Coating->Coating->findById($coating));
+        if ($this->request->is('post')){
+            $this->Order->create();
+            if ($this->Order->save($this->request->data)){
+                $this->Session->setFlash(__('Pedido realizado con éxito'));
+                return $this->redirect(['action' => 'placed/'.$base.'/'.$filling.'/'.$coating]);
+            }
+            $this->Session->setFlash(__('Error al realizar el pedido'));
+        }
+    }
+    
+    public function placed($base, $filling, $coating){
+        $this->set('user', $this->Auth->user());
         $CakeBase = new CakeBasesController();
         $Filling = new FillingsController();
         $Coating = new CoatingsController();
