@@ -3,7 +3,7 @@ $this->assign('title','Explorar imágenes');
 ?>
 <div id="demo-page" class="my-page">
     <div role="main" class="ui-content">
-        <ul data-role="listview" data-inset="true">
+        <ul data-role="listview" data-filter="true" data-inset="true">
             <?php foreach ($posts as $post): ?>
                 <li>
                     <a href="#<?php echo $post['Post']['id']; ?>">

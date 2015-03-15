@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
  *
@@ -113,3 +114,36 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+/*/*Cloudinary config
+\Cloudinary::config(array( 
+  "cloud_name" => "unn4m3d", 
+  "api_key" => "211662297478397", 
+  "api_secret" => "_B2V3fFOLIWaG1pxuOntZeQbKQs" 
+));*/
+/*
+if (class_exists('\Cloudinary') && class_exists('\Cloudinary\Uploader') && class_exists('\CloudinaryField')) {
+    return 1;
+}
+
+$get_cloudinary_path = function() {
+    $autodetect = array(
+        realpath(implode(DS, array(dirname(__FILE__), '..', '..', '..', 'src'))),
+        realpath(implode(DS, array(dirname(__FILE__), '..', 'Lib', 'Cloudinary'))),
+    );
+    foreach ($autodetect as $path) {
+        $path .= DS;
+        if (file_exists($path . "Cloudinary.php")) {
+            return $path;
+        }
+    }
+    throw new \Exception("Couldn't guess cloudinary_php src path, please define CLOUDINARY_PATH");
+};
+
+if (!defined('CLOUDINARY_PATH')) {
+    define('CLOUDINARY_PATH', $get_cloudinary_path());
+}
+require_once CLOUDINARY_PATH . "Cloudinary.php";
+require_once CLOUDINARY_PATH . "Uploader.php";
+require_once CLOUDINARY_PATH . "CloudinaryField.php";
+ * 
+ */

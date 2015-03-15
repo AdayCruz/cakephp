@@ -17,7 +17,7 @@
 $title = __d('cake_dev', 'CakeRecipe');
 ?>
 <!DOCTYPE html>
-<html>
+<?php echo "<html manifest='".$this->webroot."manifest.php'>"; ?>
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
 	<?php echo $this->Html->charset(); ?>
