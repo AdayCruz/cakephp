@@ -46,21 +46,22 @@ if (isset($this->request->pass[2])){
         </ul>
     </div><!-- /content -->
 </div>
-<div class="ui-grid-c ui-responsive">
+<div class="ui-grid-b ui-responsive">
     <?php if ($baseid!=0): ?>
         <div class="ui-block-a"><a href="/cakephp/cakebases/select/<?php echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Base</a></div>
     <?php else:?>
             <div class="ui-block-a"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Base</a></div>
     <?php endif;?>
-    <?php if ($fillingid!=0): ?>
+    <!--?php if ($fillingid!=0): ?>
         <div class="ui-block-b"><a href="/cakephp/fillings/select/<?php echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Relleno</a></div>
-    <?php else:?>
-            <div class="ui-block-b"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Rellenos</a></div><?php endif;?>
+    <!--?php else:?>
+            <div class="ui-block-b"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Rellenos</a></div>
+    <!--?php endif;?-->
     <?php if ($coatingid!=0): ?>
-        <div class="ui-block-c"><a href="/cakephp/coatings/select/<?php echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Cobertura</a></div>
-        <div class="ui-block-d"><a href="/cakephp/orders/process/<?php echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Procesar</a></div>
+        <div class="ui-block-b"><a href="/cakephp/coatings/select/<?php echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Cobertura</a></div>
+        <div class="ui-block-c"><a href="/cakephp/orders/process/<?php echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Procesar</a></div>
     <?php else:?>
-            <div class="ui-block-c"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Cobertura</a></div>
-            <div class="ui-block-d"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Procesar</a></div>
+            <div class="ui-block-b"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Cobertura</a></div>
+            <div class="ui-block-c"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-state-disabled">Procesar</a></div>
     <?php endif;?>
 </div>

@@ -1,4 +1,5 @@
 <?php 
+
 $this->assign('title','Perfil de usuario');
 if ($this->Session->read('Auth.User.avatar')==NULL){
     echo '<img style="border:1px gray solid;float:left;" src="/cakephp/img/common.png">';

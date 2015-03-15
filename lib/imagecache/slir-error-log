@@ -1,0 +1,25 @@
+
+[Sat Mar 14 22:42:10 2015] [::1 Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36] Not enough parameters were given.
+
+Available parameters:
+ w = Maximum width
+ h = Maximum height
+ c = Crop ratio (width.height(.cropper?))
+ q = Quality (0-100)
+ b = Background fill color (RRGGBB or RGB)
+ p = Progressive (0 or 1)
+
+Example usage:
+/slir/w300-h300-c1.1/path/to/image.jpg
+
+REFERRER: 
+
+REQUEST: localhost/imagecache/
+
+#0 O:\XAMPP\htdocs\imagecache\core\slirrequest.class.php(325): SLIRRequest->getParametersFromURL()
+#1 O:\XAMPP\htdocs\imagecache\core\slirrequest.class.php(129): SLIRRequest->getParameters()
+#2 O:\XAMPP\htdocs\imagecache\core\slir.class.php(293): SLIRRequest->initialize()
+#3 O:\XAMPP\htdocs\imagecache\core\slir.class.php(451): SLIR->getRequest()
+#4 O:\XAMPP\htdocs\imagecache\core\slir.class.php(264): SLIR->shouldUseRequestCache()
+#5 O:\XAMPP\htdocs\imagecache\index.php(37): SLIR->processRequestFromURL()
+#6 {main}
