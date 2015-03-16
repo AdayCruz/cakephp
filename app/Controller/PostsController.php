@@ -10,12 +10,15 @@ require 'Cloudinary/src/Cloudinary.php';
 require 'Cloudinary/src/Uploader.php';
 require 'Cloudinary/src/Api.php';
 
+App::import('Controller', 'Users');
+App::import('Controller', 'Comments');
+
 class PostsController extends AppController {
 
     public $helpers = ['Html', 'Form'];
 
     public function beforeFilter() {
-        $this->Auth->allow('browse');
+        $this->Auth->allow('browse', 'view');
     }
 
     public function index() {
@@ -23,7 +26,15 @@ class PostsController extends AppController {
     }
 
     public function browse() {
-        $this->set('posts', $this->Post->find('all'));
+        $users = new UsersController();
+        $i=0;
+        foreach ($this->Post->find('all') as $post) {
+            $posts[$i]['posts'] = $post;
+            $posts[$i]['users'] = $users->User->findById($post['Post']['userid']);
+            $i++;
+        }
+        //$this->Session->setFlash(__($post['Post']['userid']), 'default', array('class' => 'flash_info'));
+        $this->set('posts', $posts);
     }
 
     public function upload() {
@@ -99,6 +110,38 @@ class PostsController extends AppController {
                 $this->Session->setFlash(__('Se ha subido la imagen correctamente'), 'default', array('class' => 'flash_success'));
                 $this->redirect(['controller' => 'users', 'action' => 'profile']);
             }
+        }
+    }
+    
+    public function view($arg){
+        $users = new UsersController();
+        $comments = new CommentsController();
+        $commented = new CommentsController();
+        
+        $post = $this->Post->findById($arg);
+        $this->set('session', $this->Auth->user());
+        $this->set('post', $post);
+        $this->set('user',$users->User->findById($post['Post']['userid']));
+        
+        $conditions = ['Comment.postid' => $arg];
+        $i = 0;
+        foreach ($commented->Comment->find('all', ['conditions' => $conditions]) as $comment) {
+            //$this->Session->setFlash(__($order['Order']['cakebaseid']), 'default', ['class' => 'flash_warning']);
+            $commentlist[$i]['Comments'] = $comment;
+            $commentlist[$i]['Users'] = $users->User->findById($comment['Comment']['userid']);
+            $i++;
+        }
+        
+        if(isset($commentlist)){
+            $this->set('commented', $commentlist);
+        }else $this->set('commented', null);
+        if ($this->request->is('post')) {
+            $comments->Comment->create();
+            if ($comments->Comment->save($this->request->data)) {
+                $this->Session->setFlash(__('Comentario enviado'), 'default', array('class' => 'flash_success'));
+                $this->redirect(['action' => 'view/'.$post['Post']['id']]);
+            }
+            $this->Session->setFlash(__('No se pudo enviar el comentario'), 'default', array('class' => 'flash_error'));
         }
     }
 }

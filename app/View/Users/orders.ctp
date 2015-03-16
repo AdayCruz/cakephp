@@ -1,10 +1,10 @@
 <?php
 $this->assign('title','Mis pedidos');
 foreach ($orders as $order):?>
-<div class="ui-corner-all custom-corners">
+<div class="ui-corner-all">
   <div data-role="collapsible">
         <h3>Nº de pedido: <?php echo $order['Orders']['Order']['id'] ?></h3>
-    <div class="ui-grid-b">
+    <div class="ui-grid-b ui-responsive">
         <div class="ui-block-a"><div class="ui-bar ui-bar-a"><img src="<?php 
     echo $order['CakeBases']['CakeBase']['image']?>" style="height:100px;"><?php echo $order['CakeBases']['CakeBase']['name']; ?></div></div>
         <div class="ui-block-b"><div class="ui-bar ui-bar-a"><img src="<?php 
