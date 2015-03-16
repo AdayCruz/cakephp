@@ -8,6 +8,9 @@
 
 App::import('Controller', 'Posts');
 App::import('Controller', 'Orders');
+App::import('Controller', 'CakeBases');
+App::import('Controller', 'Fillings');
+App::import('Controller', 'Coatings');
 
 class UsersController extends AppController {
 
@@ -129,7 +132,7 @@ class UsersController extends AppController {
                 $ext = $path_parts['extension'];
                 $manipulator = new ImageManipulator($this->request->data['User']['avatar']['tmp_name']);
                 $newImage = $manipulator->resample(150, 150);
-                $manipulator->save('img/profile/' . $filename . "full." . $ext);
+                //$manipulator->save('img/profile/' . $filename . "full." . $ext); innecesario tener el avatar full
                 $width = $manipulator->getWidth();
                 $height = $manipulator->getHeight();
                 $centreX = round($width / 2);
@@ -156,8 +159,20 @@ class UsersController extends AppController {
 
     public function orders() {
         $Orders = new OrdersController();
+        $cakebases = new CakeBasesController();
+        $fillings = new FillingsController();
+        $coatings = new CoatingsController();
         $conditions = ['Order.userid' => $this->Auth->user('id')];
-        $this->set('orders', $Orders->Order->find('all', ['conditions' => $conditions]));
+        $i = 0;
+        foreach ($Orders->Order->find('all', ['conditions' => $conditions]) as $order) {
+            //$this->Session->setFlash(__($order['Order']['cakebaseid']), 'default', ['class' => 'flash_warning']);
+            $orderlist[$i]['Orders'] = $order;
+            $orderlist[$i]['CakeBases'] = $cakebases->CakeBase->findById($order['Order']['cakebaseid']);
+            $orderlist[$i]['Fillings'] = $fillings->Filling->findById($order['Order']['fillingid']);
+            $orderlist[$i]['Coatings'] = $coatings->Coating->findById($order['Order']['coatingid']);
+            $i++;
+        }
+        $this->set('orders', $orderlist);
     }
 
     public function posts() {
