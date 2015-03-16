@@ -96,7 +96,7 @@ class PostsController extends AppController {
             $this->request->data['Post']['imageurl'] = $filename.".". $ext;
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
-                $this->Session->setFlash('Se ha subido la imagen');
+                $this->Session->setFlash(__('Se ha subido la imagen correctamente'), 'default', array('class' => 'flash_success'));
                 $this->redirect(['controller' => 'users', 'action' => 'profile']);
             }
         }

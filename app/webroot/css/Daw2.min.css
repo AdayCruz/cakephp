@@ -222,7 +222,31 @@ html .ui-alt-icon .ui-radio-off:after {
     color: red;
 }
 
-#flashMessage {
-    text-align: center;
-    background-color: #fff;
+.flash_error, .flash_warning, .flash_success, .flash_info {
+	padding: 10px 10px 10px 36px;
+	margin: 10px 0;
+	border: solid 1px;
+}
+
+.flash_error {
+	//border-color: #DF8F8F;
+        border-color: #D8000C;
+	background: #FFD7D7 url('images/error.png') no-repeat 10px 14px;
+}
+
+.flash_warning {
+	//border-color: #E6DB55;
+        border-color: #9F6000;
+	background: #FFFBCC url('images/warning.png') no-repeat 10px 14px;
+}
+
+.flash_success {
+	//border-color: #ACDBAD;
+        border-color: #270;
+	background: #ECFAE3 url('images/success.png') no-repeat 10px 14px;
+}
+
+.flash_info {
+	border-color: #059;
+	background: #BEF url('images/info.png') no-repeat 10px 14px;
 }

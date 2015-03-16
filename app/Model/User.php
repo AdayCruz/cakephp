@@ -1,5 +1,4 @@
 <?php
-
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,7 +6,6 @@
  */
 App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
-
 class User extends AppModel {
     public $validate = array(
         'username' => array(
@@ -17,9 +15,9 @@ class User extends AppModel {
                 'allowEmpty' => false
             ),
             'between' => array(
-                'rule' => array('between', 5, 15),
+                'rule' => array('between', 6, 15),
                 'required' => true,
-                'message' => 'Entre 5 y 14 caracteres'
+                'message' => 'Entre 6 y 14 caracteres'
             ),
              'unique' => array(
                 'rule'    => array('isUniqueUsername'),
@@ -82,6 +80,9 @@ class User extends AppModel {
                 'message' => 'Las contraseñas deben coincidir',
                 'required' => false,
             )
+        ),
+          'avatar' => array(
+            'rule' => 'notEmpty'
         )
     );
      /**

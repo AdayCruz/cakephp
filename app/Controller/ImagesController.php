@@ -34,7 +34,7 @@ class ImagesController extends AppController {
                 $path_parts = pathinfo($this->data['Image']['imageurl']['name']);
                 $ext = $path_parts['extension'];
                 if ($ext != 'jpg' && $ext != 'jpeg' && $ext != 'JPG' && $ext != 'gif' && $ext != 'png') {
-                    $this->Session->setFlash('Sólo puedes subir imágenes.');
+                    $this->Session->setFlash('Sólo puedes subir imágenes');
                     $this->render();
                 } else {
                     $date = $this->data['Image']['imageurl']['name'];

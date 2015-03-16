@@ -28,10 +28,10 @@ class OrdersController extends AppController {
         if ($this->request->is('post')){
             $this->Order->create();
             if ($this->Order->save($this->request->data)){
-                $this->Session->setFlash(__('Pedido realizado con éxito'));
+                $this->Session->setFlash(__('Pedido realizado con éxito'), 'default', array('class' => 'flash_success'));
                 return $this->redirect(['action' => 'placed/'.$base.'/'.$filling.'/'.$coating]);
             }
-            $this->Session->setFlash(__('Error al realizar el pedido'));
+            $this->Session->setFlash(__('Error al realizar el pedido'), 'default', array('class' => 'flash_error'));
         }
     }
     

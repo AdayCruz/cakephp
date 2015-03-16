@@ -1,8 +1,19 @@
-<?php
-    header('Content-Type: text/cache-manifest');
-    echo "CACHE MANIFEST\n";
-    echo "\n\nNETWORK:\n";
-    echo "*\n";
-    echo "\n\nCACHE:\n"; 
-    echo "# Version: 1\n";
-?>
+<!--?php 
+header('Content-Type: text/cache-manifest');
+  echo "CACHE MANIFEST\n";
+  echo "CACHE:\n"; 
+  $hashes = "";
+
+  $dir = new RecursiveDirectoryIterator(".");
+  foreach(new RecursiveIteratorIterator($dir) as $file) {
+    if ($file->IsFile() &&
+        $file != "./any.appcache" &&
+        substr($file->getFilename(), 0, 1) != ".")
+    {
+      echo $file . "\n";
+      $hashes .= md5_file($file);
+    }
+  }
+  echo "#  Hash: " . md5($hashes) . "\n";
+  echo "\nNETWORK:\n";
+  echo "*\n";
