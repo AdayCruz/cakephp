@@ -1,5 +1,6 @@
 <?php
 $this->assign('title','Mis imágenes');
+if (count($posts)>0):
 ?>
 <div id="demo-page" class="my-page">
     <div role="main" class="ui-content">
@@ -18,3 +19,8 @@ $this->assign('title','Mis imágenes');
         </ul>
     </div><!-- /content -->
 </div>
+<?php
+
+else:
+    echo "No hay imágenes";
+endif;

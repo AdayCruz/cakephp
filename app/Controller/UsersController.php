@@ -84,14 +84,17 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-    public function login() {
+    public function login($arg1 = null, $arg2 = null, $arg3 = null) {
         if ($this->Session->check('Auth.User')) {
             $this->redirect(array('action' => 'profile'));
         }
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->setFlash(__('Bienvenido, ' . $this->Auth->user('username')), 'default', ['class' => 'flash_info']);
-                return $this->redirect($this->Auth->redirectUrl());
+                if (isset($arg1)){
+                    $arg3 =  str_replace(',', '/', $arg3);
+                    return $this->redirect(['controller' => $arg1, 'action' => $arg2.'/'.$arg3]);
+                }else return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Session->setFlash(__('Usuario y/o contraseña incorrectos'), 'default', array('class' => 'flash_error'));
         }
@@ -172,7 +175,9 @@ class UsersController extends AppController {
             $orderlist[$i]['Coatings'] = $coatings->Coating->findById($order['Order']['coatingid']);
             $i++;
         }
-        $this->set('orders', $orderlist);
+        if (isset($orderlist)){
+            $this->set('orders', $orderlist);
+        }
     }
 
     public function posts() {

@@ -88,8 +88,8 @@ if ($coating['Coating']['compatible']==5 && $base['CakeBase']['id']!=5){
         echo "Por favor, inicie sesión o regístrese para continuar";
         ?>
         <div class="ui-grid-a ui-responsive">
-            <div class="ui-block-a"><a href="/cakephp/users/login/" class="ui-btn ui-shadow ui-corner-all">Iniciar sesión</a></div>
-            <div class="ui-block-b"><a href="/cakephp/users/signup" class="ui-btn ui-shadow ui-corner-all">Registrarse</a></div>
+            <div class="ui-block-a"><a href="/cakephp/users/login/orders/process/<?php echo $baseid.",".$fillingid.",".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Iniciar sesión</a></div>
+            <div class="ui-block-b"><a href="/cakephp/users/signup/" class="ui-btn ui-shadow ui-corner-all">Registrarse</a></div>
         </div>
     <?php
     }else {
