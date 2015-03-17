@@ -24,3 +24,5 @@ if (count($posts)>0):
 else:
     echo "No hay imágenes";
 endif;
+?>
+ <div class="ui-block"><a href="/cakephp/posts/upload/" class="ui-btn ui-shadow ui-corner-all">Subir una imagen</a></div>

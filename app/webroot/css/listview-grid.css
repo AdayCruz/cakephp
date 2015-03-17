@@ -5,6 +5,9 @@
 .my-page .ui-listview li .ui-btn .ui-li-aside {
     color: #000;
 }
+.my-page .ui-listview li .ui-btn .ui-li-aside-below {
+    color: #000;
+}
 @media ( max-width: 47.9em ) {
      .my-page .ui-content {
         padding: .625em; /* 100px */
@@ -15,6 +18,13 @@
         margin-right: -2em;
        
     }
+    
+    .my-page .ui-listview li .ui-btn .ui-li-aside-below {
+        margin-bottom: -0.5em;
+        margin-right: -2em;
+       
+    }
+    
 }
 /* First breakpoint is 48em (768px). 3 column layout. Tiles 250x250 pixels incl. margin at the breakpoint. */
 @media ( min-width: 48em ) {
@@ -103,6 +113,19 @@
         -webkit-border-bottom-right-radius: 0;
         border-bottom-right-radius: 0;
     }
+    
+    .my-page .ui-listview .ui-li-aside-below {
+        text-align: center;
+        padding: .125em .625em;
+        width: auto;
+        min-height: 0;
+        top: auto;
+        left: 0;
+        bottom: 0;
+        /* Custom styling. */
+        background: #ace572;
+    }
+    
     /* If you want to add shadow, don't kill the focus style. */
     .my-page .ui-listview li {
         -moz-box-shadow: 0px 0px 9px #111;

@@ -4,8 +4,8 @@ $this->assign('title', $post['Post']['title']);
 <div class="ui-body-a" style="text-align: center">
     <p style="text-align: right">Por <b><?php echo $user['User']['username'] . "</b>, " . $post['Post']['created'] ?> <img src="/cakephp/img/profile/<?php echo $user['User']['avatar'] ?>" style="height: 50px"></p>
             <img src="/cakephp/img/uploads/<?php
-echo pathinfo($post['Post']['imageurl'])['filename'] . "full." . pathinfo($post['Post']['imageurl'])['extension']
-?>" style="max-width: 100%"><p style="text-align: left"><?php echo $post['Post']['body'] ?></p>
+            echo pathinfo($post['Post']['imageurl'])['filename'] . "full." . pathinfo($post['Post']['imageurl'])['extension']
+            ?>" style="max-width: 100%"><p style="text-align: left"><?php echo $post['Post']['body'] ?></p>
 </div>
 <?php
 if (!$session['id']):
@@ -34,17 +34,15 @@ if (!$session['id']):
 <?php
 endif;
 if (count($commented) > 0) {
-    echo "Comentarios: ".count($commented);
+    echo "Comentarios: " . count($commented);
     foreach ($commented as $comment) {
         ?>
         <div class="ui-corner-all">
               <div class="ui-bar ui-bar-a">
                     <?php echo $comment['Comments']['Comment']['title']; ?>
-                  </div>
-              <div class="ui-body ui-body-a">
+                  </div><div class="ui-body ui-body-a">
                     <p><?php echo $comment['Comments']['Comment']['comment']; ?></p>
-                  </div>
-            <div class="ui-bar ui-bar-a">
+                  </div><div class="ui-bar ui-bar-a">
                     <img src="/cakephp/img/profile/<?php echo $comment['Users']['User']['avatar'] ?>" style="height: 30px"><?php echo $comment['Users']['User']['username'] . ", " . $comment['Comments']['Comment']['created'] ?>
                   </div>
         </div>

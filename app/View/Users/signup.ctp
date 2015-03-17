@@ -13,5 +13,5 @@ $this->assign('title','Registrarse');
         echo $this->Form->input('role', array('value' => 'normal', 'type' => 'hidden'));
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('Añadir')); ?>
+<?php echo $this->Form->end(__('Registrarse')); ?>
 </div>

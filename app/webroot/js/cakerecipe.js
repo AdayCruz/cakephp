@@ -20,11 +20,16 @@ function deleteData (){
     }
 }
 
+function toggleRecipe(){
+    $("#recipediv").toggle();
+}
+
 $(document).bind("mobileinit", function(){
     $.mobile.ajaxLinksEnabled(false);
 });
 
 $( document ).ready(function() {
+    $('#PostSellable').removeAttr('checked');
     if (typeof(Storage) !== "undefined") {
         var page = "cakebases/select";
         var baseid = localStorage.getItem('baseid');

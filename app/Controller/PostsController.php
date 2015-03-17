@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 //App::uses('MagickConvertHelper', 'View');
-require 'Cloudinary/src/Cloudinary.php';
-require 'Cloudinary/src/Uploader.php';
-require 'Cloudinary/src/Api.php';
+//require 'Cloudinary/src/Cloudinary.php';
+//require 'Cloudinary/src/Uploader.php';
+//require 'Cloudinary/src/Api.php';
 
 App::import('Controller', 'Users');
 App::import('Controller', 'Comments');
@@ -103,7 +103,51 @@ class PostsController extends AppController {
                 }*/
             }
             //Fin subir imagenes
-            \Cloudinary\Uploader::upload('img/uploads/' . $filename .".". $ext);
+            //\Cloudinary\Uploader::upload('img/uploads/' . $filename .".". $ext);
+            $recipe = $this->request->data['Post']['recipe'];
+            //
+            $recipe = str_replace('[INICIO]', '<div class="forkd recipe">   
+ <div class="description"><p>'.$this->request->data['Post']['title'].'</p></div>
+    <dl class="attributes">', $recipe);
+            $recipe = str_replace('[Molde]', '<dt class="servings">Molde</dt>
+            <dd class="servings">', $recipe);
+            $recipe = str_replace('[Tiempo de preparación]', '<dt class="preparation_time">Tiempo de Preparación</dt>
+            <dd class="preparation_time">', $recipe);
+            $recipe = str_replace('[Tiempo de cocción]', '</dd>
+        <dt class="cooking_time">Tiempo de Cocción</dt>
+            <dd class="cooking_time">', $recipe);
+            $recipe = str_replace('[Tiempo de refrigeración]', '</dd>
+        <dt class="cooking_time">Tiempo de Refrigeración</dt>
+            <dd class="cooking_time">', $recipe);
+            $recipe = str_replace('[Dificultad]', '</dd>
+        <dt class="difficulty">Dificultad</dt>
+            <dd class="difficulty">', $recipe);
+            $recipe = str_replace('[Ingredientes]', '</dd>
+    </dl>
+    <img class="hero" src="/cakephp/img/uploads/'.$filename.".". $ext.'"/>
+    <div class="ingredients">
+        <div class="subheading">Ingredientes:</div>
+        <ul class="ingredients">
+			<li class="ingredient">', $recipe);
+            $recipe = str_replace('[Otro ingrediente]', '</li>
+	        <li class="ingredient">', $recipe);
+            $recipe = str_replace('[Procedimiento]', '</li>
+        </ul>
+    </div>
+    <div class="preparation">
+        <div class="subheading">Procedimiento:</div>
+        <p>
+		<ol>
+<li><span>', $recipe);
+            $recipe = str_replace('[Otro procedimiento]', '</span></li>
+<li><span>', $recipe);
+            $recipe = str_replace('[Consejo]', '</span></li>
+</ol>
+<p><i>Consejo:</i>', $recipe);
+            $recipe = str_replace('[FIN]', '</p>
+		</p>
+    </div>', $recipe);
+            $this->request->data['Post']['recipe'] = $recipe;
             $this->request->data['Post']['imageurl'] = $filename.".". $ext;
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
@@ -143,5 +187,9 @@ class PostsController extends AppController {
             }
             $this->Session->setFlash(__('No se pudo enviar el comentario'), 'default', array('class' => 'flash_error'));
         }
+    }
+    
+    public function recipe($arg1){
+        $this->set('recipe', $this->Post->findById($arg1));
     }
 }

@@ -12,6 +12,7 @@ $username='por: añadir nombre de usuario';
                         <h2><?php echo $post['posts']['Post']['title']; ?></h2>
                         <p><?php echo $post['posts']['Post']['body']; ?></p>
                         <p class="ui-li-aside">Por: <?php echo $post['users']['User']['username']; ?></p>
+                        <?php if($post['posts']['Post']['sellable']==1): ?><p class="ui-li-aside-below">¡Puedes comprar la receta!</p><?php endif; ?>
                     </a>
                 </li>
             <?php endforeach; ?>
