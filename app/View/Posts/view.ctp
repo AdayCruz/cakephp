@@ -10,12 +10,14 @@ $this->assign('title', $post['Post']['title']);
 <?php
 if (!$session['id']):
     echo "Por favor, inicie sesión o regístrese para comentar";
+    if ($post['Post']['sellable']) echo " o para comprar la receta";
     ?>
     <div class="ui-grid-a ui-responsive">
         <div class="ui-block-a"><a href="/cakephp/users/login/posts/view/<?php echo $post['Post']['id'] ?>" class="ui-btn ui-shadow ui-corner-all">Iniciar sesión</a></div>
         <div class="ui-block-b"><a href="/cakephp/users/signup" class="ui-btn ui-shadow ui-corner-all">Registrarse</a></div>
     </div>
 <?php else: ?>
+    <div class="ui-block"><a href="/cakephp/posts/recipe/<?php echo $post['Post']['id'] ?>" class="ui-btn ui-corner-all ui-icon-shop ui-btn-icon-left" style="text-align: left">Comprar receta por 0,90€</a></div>
     <div data-role="collapsible">
             <h3>Enviar un comentario</h3>
         <div class="comments form">
@@ -44,6 +46,9 @@ if (count($commented) > 0) {
                     <p><?php echo $comment['Comments']['Comment']['comment']; ?></p>
                   </div><div class="ui-bar ui-bar-a">
                     <img src="/cakephp/img/profile/<?php echo $comment['Users']['User']['avatar'] ?>" style="height: 30px"><?php echo $comment['Users']['User']['username'] . ", " . $comment['Comments']['Comment']['created'] ?>
+                    <?php if ($comment['Comments']['Comment']['userid'] == $this->Session->read('Auth.User.id')) :?>
+                        <a class="ui-btn ui-btn-inline ui-mini" href="/cakephp/comments/edit/<?php echo $comment['Comments']['Comment']['id']?>"><small>(editar)</small></a>
+                    <?php endif; ?>
                   </div>
         </div>
         <?php
