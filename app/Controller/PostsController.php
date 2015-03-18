@@ -202,17 +202,66 @@ class PostsController extends AppController {
             }else {
                 $this->Session->setFlash(__('No tienes permisos para acceder'), 'default', ['class' => 'flash_error']);
             }
+            
             if ($this->request->is('post') || $this->request->is('put')) {
+                $this->Post->id = $arg1;
+                //$this->Post
                 //$this->request->data['Post']['imageurl'] = $this->request->data['Post']['image'];
-                if ($this->Post->save($this->request->data)) {
-                    $this->Session->setFlash(__('Imagen actualizada'), 'default', array('class' => 'flash_success'));
-                    return $this->redirect(array('users' => 'posts'));
+                //$this->Session->setFlash(__($this->data['Post']['imageurl']['name']), 'default', array('class' => 'flash_success'));
+                if ($this->request->data['Post']['image']['name']) {
+                    require_once ('ImageManipulator.php');
+                    $date = date("YmdHis");
+                    $filename = $date . "u" . $this->Auth->user('id');
+                    $path_parts = pathinfo($this->data['Post']['image']['name']);
+                    $ext = $path_parts['extension'];
+                    $manipulator = new ImageManipulator($this->request->data['Post']['image']['tmp_name']);
+                    $newImage = $manipulator->resample(500, 500);
+                    $manipulator->save('img/uploads/' . $filename . "full." . $ext);
+                    $width = $manipulator->getWidth();
+                    $height = $manipulator->getHeight();
+                    $centreX = round($width / 2);
+                    $centreY = round($height / 2);
+                    $x1 = $centreX - 250;
+                    $y1 = $centreY - 250;
+
+                    $x2 = $centreX + 250;
+                    $y2 = $centreY + 250;
+
+                    $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+                    $manipulator->save('img/uploads/' . $filename . "." . $ext);
+                    $this->Post->saveField('imageurl', $filename . "." . $ext);
                 }
-                $this->Session->setFlash(__('No se ha podido editar la imagen'), 'default', array('class' => 'flash_error'));
+                
+                if ($this->Post->save($this->request->data)) {
+                    $this->Session->setFlash(__('Datos de la imagen actualizados'), 'default', array('class' => 'flash_success'));
+                    return $this->redirect('/users/posts');
+                }
+                $this->Session->setFlash(__('No se ha podido actualizar los datos de la imagen'), 'default', array('class' => 'flash_error'));
+            }
+             if (!$this->request->data) {
+                $this->request->data = $post;
             }
         }else{
             $this->Session->setFlash(__('No tienes permisos para acceder'), 'default', ['class' => 'flash_error']);
         }
     }
     
+    public function delete($id) {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+
+        if ($this->Post->delete($id)) {
+            $this->Session->setFlash(
+                    __('Imagen eliminada'), 'default', ['class' => 'flash_success']
+            );
+        } else {
+            $this->Session->setFlash(
+                    __('No se pudo eliminar la imagen'), 'default', ['class' => 'flash_error']
+            );
+        }
+
+        return $this->redirect('/users/posts');
+    }
+
 }
