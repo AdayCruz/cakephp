@@ -30,6 +30,9 @@ $(document).bind("mobileinit", function(){
 
 $( document ).ready(function() {
     $('#PostSellable').removeAttr('checked');
+    $('#confirmSubmit').click(function () {
+        return confirm('¿Está seguro de realizar esta operación?');
+    });
     if (typeof(Storage) !== "undefined") {
         var page = "/cakephp/cakebases/select";
         var baseid = localStorage.getItem('baseid');

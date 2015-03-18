@@ -43,6 +43,7 @@ class CommentsController extends AppController {
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
+        $comment=$this->Comment->findById($id);
         $postid=$comment['Comment']['postid'];
         if ($this->Comment->delete($id)) {
             $this->Session->setFlash(

@@ -29,23 +29,24 @@ if (isset($this->request->pass[2])){
 
 $disablepay = false;
 
-if ($filling['Filling']['compatible']!=null && $base['CakeBase']['id']!=$filling['Filling']['compatible']){
-    echo "ERROR: Base y relleno incompatibles, por favor seleccione otra base o relleno<br>";
+if ($filling['Filling']['compatible'] != null && $base['CakeBase']['id'] != $filling['Filling']['compatible']) {
+    echo "<div class='flash_error'>Base y relleno incompatibles, por favor seleccione otra base o relleno</div>";
     $disablepay = true;
-}else if ($filling['Filling']['compatible']==null && $base['CakeBase']['id']==5){
-    echo "ERROR: Base y relleno incompatibles, por favor seleccione otra base o relleno<br>";
-    $disablepay = true;
-}
-if ($coating['Coating']['compatible']==5 && $base['CakeBase']['id']!=5){
-    echo "ERROR: Base y cobertura incompatibles, por favor seleccione otra base o cobertura<br>";
-    $disablepay = true;
-}else if ($coating['Coating']['compatible']==0 && $base['CakeBase']['id']==5){
-    echo "ERROR: Base y cobertura incompatibles, por favor seleccione otra base o cobertura<br>";
-    $disablepay = true;
-}else if ($coating['Coating']['compatible']==null && ($base['CakeBase']['id']==3 || $base['CakeBase']['id']==4 || $base['CakeBase']['id']==5)){
-    echo "ERROR: Base y cobertura incompatibles, por favor seleccione otra base o cobertura<br>";
+} else if ($filling['Filling']['compatible'] == null && $base['CakeBase']['id'] == 5) {
+    echo "<div class='flash_error'>Base y relleno incompatibles, por favor seleccione otra base o relleno</div>";
     $disablepay = true;
 }
+if ($coating['Coating']['compatible'] == 5 && $base['CakeBase']['id'] != 5) {
+    echo "<div class='flash_error'>Base y cobertura incompatibles, por favor seleccione otra base o cobertura</div>";
+    $disablepay = true;
+} else if ($coating['Coating']['compatible'] == 0 && $base['CakeBase']['id'] == 5) {
+    echo "<div class='flash_error'>Base y cobertura incompatibles, por favor seleccione otra base o cobertura</div>";
+    $disablepay = true;
+} else if ($coating['Coating']['compatible'] == null && ($base['CakeBase']['id'] == 3 || $base['CakeBase']['id'] == 4 || $base['CakeBase']['id'] == 5)) {
+    echo "<div class='flash_error'>Base y cobertura incompatibles, por favor seleccione otra base o cobertura</div>";
+    $disablepay = true;
+}
+echo "<div class='flash_info'>Si desea seleccionar otra base, relleno o cobertura haga click sobre una imagen</div>";
 ?>
 <!--div class="ui-grid-b ui-responsive">
     <div class="ui-block-a"><a href="/cakephp/cakebases/select/<?php //echo $baseid."/".$fillingid."/".$coatingid; ?>" class="ui-btn ui-shadow ui-corner-all">Base</a></div>

@@ -7,6 +7,5 @@ echo $this->Form->input('title', ['label' => 'Título']);
 echo $this->Form->input('body', ['label' => 'Descripción']);
 echo $this->Form->input('image', ['type' => 'file', 'label' => 'Cambiar imagen']);
 echo $this->Form->end('Actualizar imagen');
-echo $this->Form->postButton('Eliminar', array('action' => 'delete', $post['Post']['id']), array('onclick'=>'return confirm("are you sure?")')
-);
+echo $this->Form->postButton('Eliminar', array('action' => 'delete', $post['Post']['id']), ['id'=>'confirmSubmit']);
 ?>
