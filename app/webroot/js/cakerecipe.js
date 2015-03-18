@@ -25,31 +25,32 @@ function toggleRecipe(){
 }
 
 $(document).bind("mobileinit", function(){
-    $.mobile.ajaxLinksEnabled(false);
+    $.mobile.ajaxLinksEnabled = false;
 });
 
 $( document ).ready(function() {
     $('#PostSellable').removeAttr('checked');
     if (typeof(Storage) !== "undefined") {
-        var page = "cakebases/select";
+        var page = "/cakephp/cakebases/select";
         var baseid = localStorage.getItem('baseid');
         if ( baseid === null ) {
             baseid = 0;
         }else {
-            page = "fillings/select";
+            page = "/cakephp/fillings/select";
         }
         var fillingid = localStorage.getItem('fillingid');
         if ( fillingid === null ) {
             fillingid = 0;
         }else {
-            page = "coatings/select";
+            page = "/cakephp/coatings/select";
         }
         var coatingid = localStorage.getItem('coatingid');
         if ( coatingid === null ) {
             coatingid = 0;
         }else {
-            page = "orders/process";
+            page = "/cakephp/orders/process";
         }
+        $("#selectcakem").attr("href", page+"/"+baseid+"/"+fillingid+"/"+coatingid);
         $("#selectcake").attr("href", page+"/"+baseid+"/"+fillingid+"/"+coatingid);
     } else {
         alert ("Sorry, your browser does not support Web Storage...");

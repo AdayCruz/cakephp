@@ -33,7 +33,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                         (['Daw2.min',
                             'jquery.mobile.icons.min',
                             'jquery.mobile.structure-1.4.5.min','listview-grid']);
-                echo $this->Html->script(['jquery-1.11.1.min','jquery.mobile-1.4.5','cakerecipe']);
+                echo $this->Html->script(['jquery-1.11.1.min','jquery.mobile-1.4.5','jqm_config','cakerecipe']);
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -70,7 +70,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                 <?php if ($this->fetch('title') != 'Página principal'): ?>
                     <!--a href="#" data-role="button" data-icon="home" data-iconpos="notext">Principal</a-->
                     <?php
-                    echo $this->Html->link('Principal', Router::fullbaseUrl() . $this->webroot, ['data-ajax' => 'false' , 'data-role' => 'button', 'data-icon' => 'home', 'data-iconpos' => 'notext']);
+                    echo $this->Html->link('Menú', '#right-panel', ['data-ajax' => 'false' , 'data-role' => 'button', 'data-icon' => 'bullets', 'data-iconpos' => 'notext']);
                     ?>
                 <?php endif; ?>
             </div>
@@ -78,7 +78,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                 <!--a href="#" data-role="button" data-icon="info" data-iconpos="notext">Info</a-->
                 <?php if ($this->fetch('title') != 'Información'):
                 echo $this->Html->link('Login',
-    ['controller' => 'pages', 'action' => 'info'],
+    ['controller' => 'pages', 'action' => '#left-panel'],
     ['data-role' => 'button', 'data-icon' => 'info', 'data-iconpos' => 'notext']); 
                 endif;?>
                 <?php if ($this->fetch('title') != 'Página principal'): ?>
@@ -87,6 +87,40 @@ $title = __d('cake_dev', 'CakeRecipe');
             </div>
                 <!--a data-rel="back" class="ui-btn ui-btn-left ui-corner-all ui-btn-icon-left ui-icon-info ui-btn-icon-notext">Información</a-->
         </div>
+        <div data-role="panel" id="left-panel" data-theme="a">
+            <div class="forkd recipe" align="center">
+                <div align="center"><h3>¡Bienvenidos<br>a<br>CakeMakers!</h3></div>
+                <div>
+                    <div><strong>Entre a formar parte de nuestra familia</strong></div>
+                    <p>Esta aplicación está pensada para los amantes de las tartas.</p>
+                    <p>Disponemos de un <i>creador</i> de recetas que dará vida a la tarta que usted desea.<br>
+                        Seleccione su base, relleno y cobertura y siga la receta que crearemos para usted!.</p>
+                    <p>Nuestra pastelera profesional nos ha proporcionado sus mejores recetas para que usted cree su tarta facilmente.</p>
+                    <p>Además puede registrarse y <i>subir sus proprias creaciones</i>, ver las creaciones de los demás y comentarlas.<br>
+                        De esta manera formará parte de nuestra comunidad de <strong>¡CakeMakers!</strong></p>
+                </div>
+            </div>
+            <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-left ui-btn-icon-notext">Close</a>
+        </div><!-- /panel -->
+        <div data-role="panel" id="right-panel" data-theme="a" data-position="right" data-display="overlay">
+            <div class="forkd recipe" align="center">
+                <div><br>
+                    <ul data-role="listview">
+                        <li data-icon="home"><a data-ajax="false" href="<?php echo Router::fullbaseUrl() . $this->webroot ?>">Principal</a></li>
+                        <?php if($this->Session->read('Auth.User.id') != null): ?>
+                        <li data-icon="user"><a href="<?php echo "/cakephp/users/profile" ?>">Perfil</a></li>
+                        <?php else: ?>
+                        <li data-icon="user"><a href="<?php echo "/cakephp/users/login" ?>">Iniciar sesión</a></li>
+                        <li data-icon="adduser"><a href="<?php echo "/cakephp/users/signup" ?>">Registrarse</a></li>
+                        <?php endif; ?>
+                        <li><a id="selectcakem" href="/cakephp/cakebases/select/0/0/0">Crear</a></li>
+                        <li><a href="/cakephp/posts/upload">Compartir</a></li>
+                        <li><a href="/cakephp/posts/browse">Comentar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-right ui-btn-icon-notext">Close</a>
+        </div><!-- /panel -->
         <div class="ui-content" role="main">
             <?php echo $this->Session->flash(); ?>
             <?php echo $this->fetch('content'); ?>

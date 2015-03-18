@@ -109,14 +109,14 @@ class PostsController extends AppController {
             $recipe = str_replace('[INICIO]', '<div class="forkd recipe">   
  <div class="description"><p>'.$this->request->data['Post']['title'].'</p></div>
     <dl class="attributes">', $recipe);
-            $recipe = str_replace('[Molde]', '<dt class="servings">Molde</dt>
+            $recipe = str_replace('[-Molde]', '<dt class="servings">Molde</dt>
             <dd class="servings">', $recipe);
             $recipe = str_replace('[Tiempo de preparación]', '<dt class="preparation_time">Tiempo de Preparación</dt>
             <dd class="preparation_time">', $recipe);
-            $recipe = str_replace('[Tiempo de cocción]', '</dd>
+            $recipe = str_replace('[-Tiempo de cocción]', '</dd>
         <dt class="cooking_time">Tiempo de Cocción</dt>
             <dd class="cooking_time">', $recipe);
-            $recipe = str_replace('[Tiempo de refrigeración]', '</dd>
+            $recipe = str_replace('[-Tiempo de refrigeración]', '</dd>
         <dt class="cooking_time">Tiempo de Refrigeración</dt>
             <dd class="cooking_time">', $recipe);
             $recipe = str_replace('[Dificultad]', '</dd>
@@ -192,4 +192,27 @@ class PostsController extends AppController {
     public function recipe($arg1){
         $this->set('recipe', $this->Post->findById($arg1));
     }
+    
+    public function edit($arg1){
+        $post=$this->Post->findById($arg1);
+        if(isset($post)){
+            if ($post['Post']['userid']==$this->Session->read('Auth.User.id')){
+                $this->Session->setFlash(__('Por dificultades técnicas, no se puede modificar la receta una vez creada. Disculpe las molestias.'), 'default', ['class' => 'flash_info']);
+                $this->set('post', $post);
+            }else {
+                $this->Session->setFlash(__('No tienes permisos para acceder'), 'default', ['class' => 'flash_error']);
+            }
+            if ($this->request->is('post') || $this->request->is('put')) {
+                //$this->request->data['Post']['imageurl'] = $this->request->data['Post']['image'];
+                if ($this->Post->save($this->request->data)) {
+                    $this->Session->setFlash(__('Imagen actualizada'), 'default', array('class' => 'flash_success'));
+                    return $this->redirect(array('users' => 'posts'));
+                }
+                $this->Session->setFlash(__('No se ha podido editar la imagen'), 'default', array('class' => 'flash_error'));
+            }
+        }else{
+            $this->Session->setFlash(__('No tienes permisos para acceder'), 'default', ['class' => 'flash_error']);
+        }
+    }
+    
 }
