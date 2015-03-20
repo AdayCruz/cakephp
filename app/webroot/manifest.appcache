@@ -1,0 +1,17 @@
+#CACHE MANIFEST
+# 2015-19-03
+
+#CACHE:
+#css/Daw2.min.css
+#css/jquery.mobile.icons.min.css
+#css/jquery.mobile.structure-1.4.5.min.css
+#css/listview-grid.css
+#js/jquery-1.11.1.min.js
+#js/jqm_config.js
+#js/jquery.mobile-1.4.5.js
+#js/cakerecipe.js
+#index.php
+
+#NETWORK:
+#/cakephp/users/login
+#/cakephp/users/signup

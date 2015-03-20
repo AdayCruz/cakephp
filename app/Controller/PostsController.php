@@ -196,7 +196,7 @@ class PostsController extends AppController {
     public function edit($arg1){
         $post=$this->Post->findById($arg1);
         if(isset($post)){
-            if ($post['Post']['userid']==$this->Session->read('Auth.User.id')){
+            if ($post['Post']['userid']==$this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role')=='admin'){
                 $this->Session->setFlash(__('Por dificultades técnicas, no se puede modificar la receta una vez creada. Disculpe las molestias.'), 'default', ['class' => 'flash_info']);
                 $this->set('post', $post);
             }else {

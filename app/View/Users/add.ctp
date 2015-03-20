@@ -1,3 +1,4 @@
+<?php  if ($this->Session->read('Auth.User.role') == 'admin'):?>
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
@@ -12,3 +13,4 @@
     </fieldset>
 <?php echo $this->Form->end(__('Añadir'));?>
 </div>
+<?php endif; ?>

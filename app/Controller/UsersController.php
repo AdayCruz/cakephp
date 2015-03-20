@@ -42,13 +42,17 @@ class UsersController extends AppController {
     }
 
     public function add() {
-        if ($this->request->is('post')) {
-            $this->User->create();
-            if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Usuario creado'), 'default', array('class' => 'flash_success'));
-                return $this->redirect(array('action' => 'index')); //<- probablemente mal
+        if ($this->Session->read('Auth.User.role') == 'admin') {
+            if ($this->request->is('post')) {
+                $this->User->create();
+                if ($this->User->save($this->request->data)) {
+                    $this->Session->setFlash(__('Usuario creado'), 'default', array('class' => 'flash_success'));
+                    return $this->redirect(array('action' => 'index')); //<- probablemente mal
+                }
+                $this->Session->setFlash(__('No se ha podido crear el usuario'), 'default', array('class' => 'flash_error'));
             }
-            $this->Session->setFlash(__('No se ha podido crear el usuario'), 'default', array('class' => 'flash_error'));
+        }else{
+            $this->Session->setFlash(__('No puedes acceder aquí'), 'default', array('class' => 'flash_error'));
         }
     }
 

@@ -33,7 +33,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                         (['Daw2.min',
                             'jquery.mobile.icons.min',
                             'jquery.mobile.structure-1.4.5.min','listview-grid']);
-                echo $this->Html->script(['jquery-1.11.1.min','jquery.mobile-1.4.5','jqm_config','cakerecipe']);
+                echo $this->Html->script(['jquery-1.11.1.min','jqm_config','jquery.mobile-1.4.5','cakerecipe']);
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -95,6 +95,7 @@ $title = __d('cake_dev', 'CakeRecipe');
                     <p>Esta aplicación está pensada para los amantes de las tartas.</p>
                     <p>Disponemos de un <i>creador</i> de recetas que dará vida a la tarta que usted desea.<br>
                         Seleccione su base, relleno y cobertura y siga la receta que crearemos para usted!.</p>
+                    <img src="/cakephp/img/logo.png" alt="Logo" title="Logo" style="width:100%">
                     <p>Nuestra pastelera profesional nos ha proporcionado sus mejores recetas para que usted cree su tarta facilmente.</p>
                     <p>Además puede registrarse y <i>subir sus proprias creaciones</i>, ver las creaciones de los demás y comentarlas.<br>
                         De esta manera formará parte de nuestra comunidad de <strong>¡CakeMakers!</strong></p>

@@ -16,7 +16,7 @@ class CommentsController extends AppController {
     public function edit($arg1) {
         $comment=$this->Comment->findById($arg1);
         if(isset($comment)){
-            if ($comment['Comment']['userid']==$this->Session->read('Auth.User.id')){
+            if ($comment['Comment']['userid']==$this->Session->read('Auth.User.id')|| $this->Session->read('Auth.User.role')=='admin'){
                 $this->set('comment', $comment);
             }else {
                 $this->Session->setFlash(__('No tienes permisos para acceder'), 'default', ['class' => 'flash_error']);

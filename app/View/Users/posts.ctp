@@ -7,11 +7,11 @@ if (count($posts)>0):
         <ul data-role="listview" data-inset="true">
             <?php foreach ($posts as $post): ?>
                 <li>
-                    <a href="/cakephp/posts/edit/<?php echo $post['Post']['id']; ?>">
+                    <a href="/cakephp/posts/view/<?php echo $post['Post']['id']; ?>">
                         <img src="/cakephp/img/uploads/<?php echo $post['Post']['imageurl']; ?>" class="ui-li-thumb">
                         <h2><?php echo $post['Post']['title']; ?></h2>
                         <p><?php echo $post['Post']['body']; ?></p>
-                        <p class="ui-li-aside">Editar o eliminar</p>
+                        <a data-icon="edit" href="/cakephp/posts/edit/<?php echo $post['Post']['id']; ?>"><p class="ui-li-aside-edit">Editar o eliminar</p></a>
                     </a>
                 </li>
             <?php endforeach; ?>
